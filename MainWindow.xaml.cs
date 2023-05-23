@@ -37,19 +37,14 @@ namespace practic11
         //Задание 1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (double.TryParse(textBox.Text, out double a))
-            {
-                double Obiem = Pow(a, 3);
-                double Plochad = 6 * Pow(a, 2);
-
-                ObiemTextBox.Text = Obiem.ToString();
-                PlochadTextBox.Text = Plochad.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Некорректное значение длины ребра куба.");
-            }
+            double d = int.Parse(textBox.Text); ;
+            double L = 3.14 * d;
+            ObiemTextBox.Text = L.ToString();
+            
         }
+
+
+        
 
 
         //Задание 2
@@ -59,13 +54,14 @@ namespace practic11
                 double.TryParse(textBoxB.Text, out double b) &&
                 double.TryParse(textBoxC.Text, out double c))
             {
-                double AC = Abs(a - c);
-                double BC = Abs(b - c);
-                double product = AC * BC;
+                double AC = Math.Abs(a - c);
+                double BC = Math.Abs(b - c);
+                double sum = AC + BC;
+
 
                 ACTextBox.Text = AC.ToString();
                 BCTextBox.Text = BC.ToString();
-                ACBCTextBox.Text = product.ToString();
+                ACBCTextBox.Text = sum.ToString();
             }
             else
             {
@@ -75,12 +71,12 @@ namespace practic11
         //Задание 3
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (double.TryParse(VtextBox.Text, out double vl) && double.TryParse(VrtextBox.Text, out double vr) && double.TryParse(t1textBox.Text, out double t1) && double.TryParse(t2textBox.Text, out double t2))
+            if (double.TryParse(VtextBox.Text, out double v1) && double.TryParse(VrtextBox.Text, out double v2) && double.TryParse(t1textBox.Text, out double t1) && double.TryParse(t2textBox.Text, out double s))
             {
-                double result = vl * t1 / (vr - vl) + t2;
+                double S2 = s + t1 * (v1 + v2); ;
 
                 // Вывод результата
-                OtverTextBox.Text = "Результат: " + result.ToString();
+                OtverTextBox.Text = "Результат: " + S2.ToString();
             }
             else
             {
@@ -93,11 +89,14 @@ namespace practic11
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             if (double.TryParse(xTextBox.Text, out double x) &&
-                double.TryParse(aTextBox.Text, out double a))
+                double.TryParse(aTextBox.Text, out double aa) &&
+                 double.TryParse(aTextBox.Text, out double y))
             {
-                double p = (1 / Cos(x)) + Log(Abs(Tan(x / 2))) + (x / (1 + (x / 1 + x)));
-                double alfa = Pow(p, 5) * Sqrt(a * Pow(x, 3) + 2) / 2 * Cos(x);
-                alfaTextBox.Text = $"Ответ:{alfa:N2}";
+                double a = x + y;
+                double b = x * x + y * y;
+                double p = (a + b) * (a + b) + a * Math.Cos(a + b) + a * Math.Sqrt(b) / (a + b);
+
+                alfaTextBox.Text = $"Ответ:{p:N2}";
             }
             else
             {
@@ -105,6 +104,9 @@ namespace practic11
             }
         }
 
-        
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
     }
 }
